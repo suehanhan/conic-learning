@@ -1,0 +1,3 @@
+{
+  "/api/questions/random/route": "app/api/questions/random/route.js"
+}

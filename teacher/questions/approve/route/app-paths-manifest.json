@@ -1,0 +1,3 @@
+{
+  "/api/teacher/questions/approve/route": "app/api/teacher/questions/approve/route.js"
+}

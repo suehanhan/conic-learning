@@ -1,0 +1,10 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/teacher/class-report/route.js")
+R.c("server/chunks/[root-of-the-server]__0x5w3u3._.js")
+R.c("server/chunks/_105f9b9._.js")
+R.c("server/chunks/src_server_auth_jwt_ts_19m4omh._.js")
+R.c("server/chunks/[root-of-the-server]__1dbb677._.js")
+R.c("server/chunks/node_modules_zod_v4_classic_external_1-pw2v2.js")
+R.c("server/chunks/[root-of-the-server]__0xuaoik._.js")
+R.c("server/chunks/_next-internal_server_app_api_teacher_class-report_route_actions_1qv9nre.js")
+R.m(91757)
+module.exports=R.m(91757).exports

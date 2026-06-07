@@ -1,0 +1,3 @@
+{
+  "/api/teacher/class-report/pdf/route": "app/api/teacher/class-report/pdf/route.js"
+}

@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/node_modules_next_dist_esm_build_templates_edge-wrapper_0_kjzx3.js",
+        "server/edge/chunks/[root-of-the-server]__0emy-m4._.js",
+        "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_0a9xbl8.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "entrypoint": "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_0a9xbl8.js",
+      "matchers": [
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/student(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\.json|\\.rsc|\\.segments\\/.+\\.segment\\.rsc)?[\\/#\\?]?$",
+          "originalSource": "/student/:path*"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/teacher(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\.json|\\.rsc|\\.segments\\/.+\\.segment\\.rsc)?[\\/#\\?]?$",
+          "originalSource": "/teacher/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "CESB9Na0NQRui1QGQjENI",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "q03H8D9JEqtdPtb5nyt1ZjM0fgfmBJfo02vAjJf0LzM=",
+        "__NEXT_PREVIEW_MODE_ID": "0ab229a2f2daaddde05cc51433ba9e95",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "86be3a11fcc18a2aa32f85f54f4cd5f229ce220faf026418149469bc6c1a7d97",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "c4e6b84b781f99d555b2b9d8b7fb2e1c62dc32fcf4b742c5d2b9e5b98f08dd8a"
+      }
+    }
+  },
+  "sortedMiddleware": [
+    "/"
+  ],
+  "functions": {}
+}

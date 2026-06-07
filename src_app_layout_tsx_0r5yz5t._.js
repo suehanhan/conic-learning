@@ -1,0 +1,3 @@
+module.exports=[27572,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"zh-CN",className:"h-full antialiased",children:(0,b.jsx)("body",{className:"min-h-full flex flex-col bg-zinc-50 text-zinc-900 font-sans",children:a})})},"metadata",0,{title:"圆锥曲线专题学习",description:"面向学生与教师的圆锥曲线专题学习平台：数形结合、分层递进、即时反馈与 AI 诊断。"}])},50645,a=>{a.n(a.i(27572))}];
+
+//# sourceMappingURL=src_app_layout_tsx_0r5yz5t._.js.map

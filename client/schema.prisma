@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  student
+  teacher
+}
+
+enum QuestionType {
+  choice
+  blank
+  solution
+}
+
+enum Difficulty {
+  basic
+  medium
+  hard
+}
+
+enum QuestionSource {
+  preset
+  uploaded
+}
+
+enum QuestionStatus {
+  pending
+  approved
+  rejected
+}
+
+enum TestModule {
+  ellipse
+  hyperbola
+  parabola
+  mixed
+}
+
+enum ChatMessageRole {
+  user
+  assistant
+}
+
+model User {
+  id           String   @id @default(cuid())
+  role         Role
+  name         String
+  email        String   @unique
+  classGroup   String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  studyRecords StudyRecord[]
+  wrongBook    WrongQuestionBook[]
+  testReports  TestReport[]
+  chatHistory  ChatHistory[]
+  curveStates  CurveState[]
+}
+
+model Knowledge {
+  id       String  @id @default(cuid())
+  title    String
+  content  String
+  category String
+  parentId String?
+  order    Int     @default(0)
+
+  parent   Knowledge?  @relation("KnowledgeToKnowledge", fields: [parentId], references: [id])
+  children Knowledge[] @relation("KnowledgeToKnowledge")
+}
+
+model Question {
+  id              String         @id @default(cuid())
+  type            QuestionType
+  difficulty      Difficulty
+  content         String
+  answer          String?
+  solution        String?
+  pitfalls        String?
+  knowledgePoints Json?
+  source          QuestionSource
+  imageUrl        String?
+  status          QuestionStatus @default(approved)
+  createdAt       DateTime       @default(now())
+
+  studyRecords StudyRecord[]
+  wrongBook    WrongQuestionBook[]
+  generated    GeneratedQuestion[]
+}
+
+model GeneratedQuestion {
+  id               String     @id @default(cuid())
+  parentQuestionId String
+  difficultyLevel  Difficulty
+  content          String
+  answer           String?
+  solution         String?
+
+  parentQuestion Question @relation(fields: [parentQuestionId], references: [id], onDelete: Cascade)
+}
+
+model StudyRecord {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  userAnswer String?
+  isCorrect  Boolean
+  timeSpent  Int
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([questionId, createdAt])
+}
+
+model WrongQuestionBook {
+  id         String @id @default(cuid())
+  userId     String
+  questionId String
+  wrongCount Int    @default(1)
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+}
+
+model TestReport {
+  id         String     @id @default(cuid())
+  userId     String
+  module     TestModule
+  score      Int
+  aiAnalysis String
+  createdAt  DateTime   @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model ChatHistory {
+  id        String          @id @default(cuid())
+  userId    String
+  role      ChatMessageRole
+  content   String
+  timestamp DateTime        @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, timestamp])
+}
+
+model CurveState {
+  id          String   @id @default(cuid())
+  stateJson   String
+  createdAt   DateTime @default(now())
+  ownerUserId String?
+
+  owner User? @relation(fields: [ownerUserId], references: [id], onDelete: SetNull)
+}
